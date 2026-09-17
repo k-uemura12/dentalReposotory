@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>スマート診療タスク</title>
+    <!-- 統合済みの style.css を指定 -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- ヘッダーをここに戻す -->
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="layout-container">
+        <!-- サイドメニュー -->
+        <div th:replace="~{fragments/menu :: menu}"></div>
+
+        <!-- メインコンテンツ領域 -->
+        <main class="main-content">
+            <h1 class="page-header">スケジュール</h1>
+            
+            <!-- サマリーカード -->
+            <div th:replace="~{fragments/summary :: summary}"></div>
+
+            <!-- 診療一覧テーブル -->
+            <div th:replace="~{fragments/contents :: contents}"></div>
+        </main>
+
+        <!-- ユーティリティペイン -->
+        <div th:replace="~{fragments/utility :: utility}"></div>
+    </div>
+	<!-- 左右を連動させるためのJavaScript -->
+	    <script>
+	        function switchTab(tabName) {
+	            document.getElementById('pane-default').classList.add('hidden');
+	            document.getElementById('pane-register').classList.add('hidden');
+	            document.getElementById('pane-record').classList.add('hidden');
+	            document.getElementById('pane-status').classList.add('hidden');
+
+	            if (tabName === 'schedule') {
+	                document.getElementById('pane-default').classList.remove('hidden');
+	            } else if (tabName === 'register') {
+	                document.getElementById('pane-register').classList.remove('hidden');
+	            } else if (tabName === 'record') {
+	                document.getElementById('pane-record').classList.remove('hidden');
+	            } else if (tabName === 'status') {
+	                document.getElementById('pane-status').classList.remove('hidden');
+	            }
+	        }
+	    </script>
+</body>
+</html>

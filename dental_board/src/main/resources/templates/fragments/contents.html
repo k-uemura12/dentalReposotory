@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <!-- 診療一覧カードエリア -->
+    <div th:fragment="contents" class="table-card">
+        <div class="table-title">本日の診療一覧</div>
+        
+        <table class="clinic-table">
+            <thead>
+                <tr>
+                    <th>時間</th>
+                    <th>診察券番号</th>
+                    <th>患者氏名</th>
+                    <th>処置内容</th>
+                    <th style="text-align: center;">検査</th>
+                    <th style="text-align: center;">パノラマ</th>
+                    <th style="text-align: center;">スプリント</th>
+                    <th style="text-align: center;">追加点数</th>
+                    <th>メモ</th>
+                    <th style="text-align: center;">完了</th>
+                </tr>
+            </thead>
+			<tbody>
+			                <tr th:each="app : ${appointments}">
+			                    <td th:text="${app.appointmentTime}">09:00</td>
+			                    <td th:text="${app.patientId}">P0001</td>
+			                    <td th:text="${app.patientName}">山崎 裕子</td>
+			                    <td th:text="${app.treatment}">メンテナンス</td>
+
+			                    <!-- 検査 -->
+			                    <td style="text-align: center;">
+			                        <th:block th:if="${app.patientName != null and app.patientName != ''}">
+			                            <span th:if="${app.isInspected}" class="status-badge planned">実施予定</span>
+			                            <span th:unless="${app.isInspected}" class="status-badge unassigned">未入力</span>
+			                        </th:block>
+			                    </td>
+
+			                    <!-- パノラマ -->
+			                    <td style="text-align: center;">
+			                        <th:block th:if="${app.patientName != null and app.patientName != ''}">
+			                            <span th:if="${app.isPanorama}" class="status-badge planned">実施予定</span>
+			                            <span th:unless="${app.isPanorama}" class="status-badge unassigned">未入力</span>
+			                        </th:block>
+			                    </td>
+
+			                    <!-- スプリント -->
+			                    <td style="text-align: center;">
+			                        <th:block th:if="${app.patientName != null and app.patientName != ''}">
+			                            <span th:if="${app.isSplint}" class="status-badge planned">実施予定</span>
+			                            <span th:unless="${app.isSplint}" class="status-badge unassigned">未入力</span>
+			                        </th:block>
+			                    </td>
+
+			                    <!-- 追加点数 -->
+			                    <td style="text-align: center;">
+			                        <th:block th:if="${app.patientName != null and app.patientName != ''}">
+			                            <span th:if="${app.isExtraPoints}" class="status-badge planned">実施予定</span>
+			                            <span th:unless="${app.isExtraPoints}" class="status-badge unassigned">未入力</span>
+			                        </th:block>
+			                    </td>
+			                    
+			                    <td th:text="${app.memo}">-</td>
+			                    
+			                    <!-- 完了 -->
+			                    <td style="text-align: center;">
+			                        <th:block th:if="${app.patientName != null and app.patientName != ''}">
+			                            <span th:if="${app.isCompleted}" class="status-badge planned">実施予定</span>
+			                            <span th:unless="${app.isCompleted}" class="status-badge unassigned">未入力</span>
+			                        </th:block>
+			                    </td>
+			                </tr>
+			            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

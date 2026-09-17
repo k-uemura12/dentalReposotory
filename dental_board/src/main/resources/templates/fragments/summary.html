@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div th:fragment="summary">
+        <!-- カウントカード部分 -->
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon bg-blue">予約</div>
+                <div>
+                    <div>本日の予約人数</div>
+                    <div class="card-num">16 名</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon bg-green">完了</div>
+                <div>
+                    <div>実施済み</div>
+                    <div class="card-num">12 件</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon bg-red">未</div>
+                <div>
+                    <div>未実施</div>
+                    <div class="card-num">4 件</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
