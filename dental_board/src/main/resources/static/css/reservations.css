@@ -1,0 +1,208 @@
+@charset "UTF-8";
+
+
+/* ==========================================
+   予約画面全体
+   ========================================== */
+
+.reservation-page {
+    width: 100%;
+}
+
+
+/* ==========================================
+   上部
+   ========================================== */
+
+   .reservation-toolbar {
+       position: relative;
+       display: flex;
+       align-items: center;
+       margin-bottom: 16px;
+       min-height: 45px;
+   }
+
+.reservation-title {
+    color: #183b63;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
+/* 日付 */
+.reservation-date {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.reservation-date span {
+    min-width: 190px;
+    padding: 9px 16px;
+
+    background: #ffffff;
+    border: 1px solid #d7e0e7;
+    border-radius: 20px;
+
+    color: #334155;
+    font-weight: 600;
+    text-align: center;
+}
+
+.reservation-date button {
+    background: transparent;
+    border: none;
+
+    color: #52677a;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   予約表を囲む部分
+   ========================================== */
+
+.reservation-table-wrapper {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe7ed;
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ==========================================
+   予約表
+   ========================================== */
+
+.reservation-table {
+    width: 100%;
+    margin: 0;
+
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.reservation-table th {
+    height: 48px;
+
+    background: #f4f7f9;
+
+    border-right: 1px solid #dfe5ea;
+    border-bottom: 1px solid #dfe5ea;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+.reservation-table td {
+    height: 100px;
+    padding: 5px;
+
+    vertical-align: top;
+
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+/* ==========================================
+   時間
+   ========================================== */
+
+.reservation-table .time-column {
+    width: 75px;
+}
+
+.reservation-time {
+    width: 75px;
+
+    background: #f8fafc;
+
+    color: #52677a;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* ==========================================
+   予約カード
+   ========================================== */
+
+.appointment-card {
+    min-height: 78px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 8px 10px;
+
+    border-radius: 5px;
+
+    color: #334155;
+    font-size: 12px;
+
+    cursor: default;
+}
+
+.appointment-card strong {
+    margin: 3px 0;
+
+    color: #183b63;
+
+    font-size: 14px;
+}
+
+.appointment-number {
+    color: #64748b;
+    font-size: 11px;
+}
+
+
+/* ==========================================
+   予約カードの色
+   ========================================== */
+
+.card-pink {
+    background: #fde2e4;
+    border-left: 4px solid #f28b96;
+}
+
+.card-blue {
+    background: #dff2fb;
+    border-left: 4px solid #54b6df;
+}
+
+.card-yellow {
+    background: #fff3c4;
+    border-left: 4px solid #e6c34a;
+}
+
+.card-purple {
+    background: #e9e4f7;
+    border-left: 4px solid #9b8bc4;
+}
+
+
+/* カーソルを乗せた時だけ少し強調 */
+.appointment-card:hover {
+    filter: brightness(0.97);
+}

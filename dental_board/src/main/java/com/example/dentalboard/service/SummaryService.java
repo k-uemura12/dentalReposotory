@@ -9,18 +9,42 @@ import org.springframework.stereotype.Service;
 @Service
 public class SummaryService {
 
-    // ★ このメソッドが必要です
     public Map<String, Object> getSummaryData(LocalDate targetDate) {
+
         if (targetDate == null) {
             targetDate = LocalDate.now();
         }
 
         Map<String, Object> summaryData = new HashMap<>();
-        
-        // 仮のサマリーデータ（必要に応じてDB等のロジックへ変更）
-        summaryData.put("totalAppointments", 10); // 総予約数
-        summaryData.put("completedAppointments", 3); // 完了数
-        summaryData.put("remainingAppointments", 7); // 未実施数
+
+        // 仮のサマリーデータ
+        int totalAppointments = 10;
+        int completedAppointments = 3;
+        int remainingAppointments = 7;
+
+        // 予約人数
+        summaryData.put("todayReservationCount", totalAppointments);
+
+        // 実施済み
+        summaryData.put("completedCount", completedAppointments);
+
+        // 未実施
+        summaryData.put("incompleteCount", remainingAppointments);
+
+        // 実施率
+        int completedRate =
+                totalAppointments == 0
+                ? 0
+                : completedAppointments * 100 / totalAppointments;
+
+        // 未実施率
+        int incompleteRate =
+                totalAppointments == 0
+                ? 0
+                : remainingAppointments * 100 / totalAppointments;
+
+        summaryData.put("completedRate", completedRate);
+        summaryData.put("incompleteRate", incompleteRate);
 
         return summaryData;
     }

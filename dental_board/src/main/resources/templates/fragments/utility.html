@@ -4,141 +4,102 @@
     <!-- ==========================================
        ユーティリティペイン（右側エリア）
        ========================================== -->
-    <aside th:fragment="utility" class="utility-pane w-[340px] bg-white border-l border-[#e0e0e0] p-5 flex flex-col shrink-0 overflow-y-auto shadow-lg">
+    <aside th:fragment="utility" class="utility-pane w-[340px] bg-white border-l border-[#e0e0e0] p-5 flex flex-col shrink-0 overflow-y-auto shadow-lg h-full min-h-[calc(100vh-80px)]">
         
-        <!-- 共通：患者情報ヘッダー -->
-        <div id="utility-patient-header" class="flex items-center gap-3 pb-3 mb-4 border-b border-gray-100 bg-slate-50 p-3 rounded-lg">
-            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">👤</div>
-            <div>
-                <div id="pane-patient-id" class="text-xs text-gray-500 font-mono">P0018</div>
-                <div id="pane-patient-name" class="font-bold text-gray-800 text-base">田中 花子 さん</div>
-                <div class="text-xs text-blue-600">9:00 予約</div>
-            </div>
-        </div>
-
-        <!-- 0. 初期デフォルト状態 (診療スケジュール選択時) -->
-        <div id="pane-default" class="utility-content space-y-4">
-            <h3 class="font-bold text-base text-[#2c3e50]">診療スケジュール</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">
-                左側のメニュー（予定登録、実施記録、実施状況）から項目を選択してください。
-            </p>
-        </div>
-
-        <!-- 1. パターン：予定登録 (画像1枚目に対応) -->
-        <div id="pane-register" class="utility-content hidden space-y-4">
+        <!-- 右側のユーティリティペイン全体 -->
+        <div class="utility-pane">
             
-            <!-- ① 今日の予定 -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm space-y-2">
-                <div class="font-bold text-xs text-[#2c3e50] mb-1">本日の予定 <span class="text-gray-400 font-normal"></span></div>
-                <div class="space-y-1.5 text-xs text-slate-700">
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" checked class="rounded"> 歯周検査</span><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px] font-medium">4ヶ月前</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" checked class="rounded"> パノラマ撮影</span><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px] font-medium">8ヶ月前</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" class="rounded"> スプリント</span><span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-[10px] font-medium">前回あり</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" class="rounded"> フッ素</span><span class="bg-rose-100 text-rose-800 px-2 py-0.5 rounded text-[10px] font-medium">23日前</span></label>
+            <!-- 患者ヘッダー（アイコン ＋ 名前） -->
+            <div class="patient-header">
+                <div class="patient-avatar-wrapper">
+                    <img src="/images/patient-icon.png" alt="患者アイコン" class="patient-icon">
                 </div>
-            </div>
-            <button class="w-full py-2 bg-[#56abf8] hover:bg-blue-400 text-white font-bold rounded-lg text-xs transition shadow-sm">予定を保存</button>
+				<div class="patient-info-group">
+				                    <span id="detail-patient-name" class="patient-name">田中 花子 さん</span>
+				                    <span class="patient-time">9:00 予約</span>
+				                </div>
+				            </div>
 
-            <!-- ② 前回の診療 -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm space-y-2">
-                <div class="font-bold text-xs text-[#2c3e50] mb-1">前回の診療 <span class="text-gray-400 font-normal"></span></div>
-                <div class="space-y-2 text-xs text-slate-600">
-                    <div class="flex justify-between items-center"><span class="flex items-center gap-1.5 text-slate-700 font-medium">歯周検査</span><span class="text-gray-500 font-mono text-[11px]">2026/05/12 <span class="text-gray-400">(4ヶ月前)</span></span></div>
-                    <div class="flex justify-between items-center"><span class="flex items-center gap-1.5 text-slate-700 font-medium"> パノラマ撮影</span><span class="text-gray-500 font-mono text-[11px]">2026/01/10 <span class="text-gray-400">(8ヶ月前)</span></span></div>
-                    <div class="flex justify-between items-center"><span class="flex items-center gap-1.5 text-slate-700 font-medium"> スプリント</span><span class="text-gray-500 font-mono text-[11px]">2026/05/12 <span class="text-gray-400">(4ヶ月前)</span></span></div>
-                    <div class="flex justify-between items-center"><span class="flex items-center gap-1.5 text-slate-700 font-medium"> フッ素</span><span class="text-gray-500 font-mono text-[11px]">2026/06/20 <span class="text-gray-400">(23日前)</span></span></div>
-                </div>
-            </div>
+				            <!-- ① 今日の予定セクション -->
+				            <div class="detail-card">
+				                <h4 class="card-title">今日の予定 </h4>
+				                <div class="checkbox-group">
+				                    <label class="checkbox-item">
+				                        <div class="checkbox-left">
+				                            <input type="checkbox" checked class="custom-checkbox">
+				                            <span>歯周検査</span>
+				                        </div>
+				                        <span class="period-badge badge-orange">4ヶ月前</span>
+				                    </label>
+				                    <label class="checkbox-item">
+				                        <div class="checkbox-left">
+				                            <input type="checkbox" checked class="custom-checkbox">
+				                            <span>レントゲン</span>
+				                        </div>
+				                        <span class="period-badge badge-green">8ヶ月前</span>
+				                    </label>
+				                    <label class="checkbox-item">
+				                        <div class="checkbox-left">
+				                            <input type="checkbox" class="custom-checkbox">
+				                            <span>マウスピース</span>
+				                        </div>
+				                        <span class="period-badge badge-gray">前回あり</span>
+				                    </label>
+				                    <label class="checkbox-item">
+				                        <div class="checkbox-left">
+				                            <input type="checkbox" class="custom-checkbox">
+				                            <span>フッ素塗布</span>
+				                        </div>
+				                        <span class="period-badge badge-red">23日前</span>
+				                    </label>
+				                </div>
+				            </div>
 
-            <!-- ③ 次回予定 -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm space-y-2">
-                <div class="font-bold text-xs text-[#2c3e50] mb-1">次回予定 <span class="text-gray-400 font-normal"></span></div>
-                <div class="space-y-1.5 text-xs text-slate-700">
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" checked class="rounded"> 歯周検査</span><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px] font-medium">4ヶ月前</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" checked class="rounded"> パノラマ撮影</span><span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px] font-medium">8ヶ月前</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" class="rounded"> スプリント</span><span class="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-[10px] font-medium">前回あり</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" class="rounded"> フッ素</span><span class="bg-rose-100 text-rose-800 px-2 py-0.5 rounded text-[10px] font-medium">23日前</span></label>
-                </div>
-            </div>
-            <button class="w-full py-2 bg-[#56abf8] hover:bg-blue-400 text-white font-bold rounded-lg text-xs transition shadow-sm">予定を保存</button>
+				            <!-- ② 前回の診療セクション -->
+				            <div class="detail-card">
+				                <h4 class="card-title">前回の診療 </h4>
+				                <div class="history-list">
+				                    <div class="history-item">
+				                        <span class="history-name">歯周検査</span>
+				                        <span class="history-date">2026/05/12 <span class="history-ago">(4ヶ月前)</span></span>
+				                    </div>
+				                    <div class="history-item">
+				                        <span class="history-name">レントゲン</span>
+				                        <span class="history-date">2026/01/10 <span class="history-ago">(8ヶ月前)</span></span>
+				                    </div>
+				                    <div class="history-item">
+				                        <span class="history-name">マウスピース</span>
+				                        <span class="history-date">2026/05/12 <span class="history-ago">(4ヶ月前)</span></span>
+				                    </div>
+				                    <div class="history-item">
+				                        <!-- 空欄だった部分に項目名を追加 -->
+				                        <span class="history-name">フッ素塗布</span>
+				                        <span class="history-date">2026/06/20 <span class="history-ago">(23日前)</span></span>
+				                    </div>
+				                </div>
+				            </div>
 
-            <!-- ④ カルテメモ -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm space-y-2">
-                <div class="font-bold text-xs text-[#2c3e50]">カルテメモ</div>
-                <div class="text-xs text-slate-600 space-y-1 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                    
-                </div>
-            </div>
-            <button class="w-full py-2 bg-[#56abf8] hover:bg-blue-400 text-white font-bold rounded-lg text-xs transition shadow-sm">保存</button>
-        </div>
+				            <!-- ③ カルテメモセクション（テキストエリア版） -->
+				            <div class="detail-card">
+				                <h4 class="card-title">
+				                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
+				                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+				                        <polyline points="14 2 14 8 20 8"></polyline>
+				                        <line x1="16" y1="13" x2="8" y2="13"></line>
+				                        <line x1="16" y1="17" x2="8" y2="17"></line>
+				                        <polyline points="10 9 9 9 8 9"></polyline>
+				                    </svg>
+				                    カルテメモ
+				                </h4>
+				                <textarea class="memo-textarea" placeholder="カルテメモを入力してください..."></textarea>
+				            </div>
 
-        <!-- 2. パターン：実施記録 (画像2枚目に対応) -->
-        <div id="pane-record" class="utility-content hidden space-y-4">
-            
-            <!-- ① 実施結果 -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm space-y-2">
-                <div class="font-bold text-xs text-[#2c3e50] mb-1">実施結果</div>
-                <div class="space-y-2 text-xs text-slate-700">
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" checked class="rounded accent-blue-600"> 歯周検査</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" checked class="rounded accent-blue-600"> パノラマ撮影</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" class="rounded"> スプリント</span></label>
-                    <label class="flex items-center justify-between p-1.5 hover:bg-slate-50 rounded"><span class="flex items-center gap-2"><input type="checkbox" class="rounded"> フッ素</span></label>
-                </div>
-            </div>
-            <button class="w-full py-2 bg-[#56abf8] hover:bg-blue-400 text-white font-bold rounded-lg text-xs transition shadow-sm">保存</button>
-
-            <!-- ② カルテメモ -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm space-y-2">
-                <div class="font-bold text-xs text-[#2c3e50]">カルテメモ</div>
-                <div class="text-xs text-slate-600 space-y-1 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
-                    <div>• 歯肉の炎症あり（前回より改善）</div>
-                    <div>• 生活指導：間食・歯磨きの徹底</div>
-                </div>
-            </div>
-            <button class="w-full py-2 bg-[#56abf8] hover:bg-blue-400 text-white font-bold rounded-lg text-xs transition shadow-sm">保存</button>
-        </div>
-
-        <!-- 3. パターン：実施状況 (画像3枚目に対応) -->
-        <div id="pane-status" class="utility-content hidden space-y-4">
-            
-            <!-- ① 本日の実施率 -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm text-center space-y-2">
-                <div class="font-bold text-xs text-[#2c3e50] text-left">本日の実施率</div>
-                <div class="flex items-center justify-around py-2">
-                    <div class="relative w-20 h-20 rounded-full bg-[conic-gradient(#22c55e_0%_75%,#e2e8f0_75%_100%)] flex items-center justify-center shadow-inner">
-                        <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center font-bold text-slate-800 text-sm">75%</div>
-                    </div>
-                    <div class="text-left text-xs text-slate-600 space-y-1.5">
-                        <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span> 実施済み 12件</div>
-                        <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-300 inline-block"></span> 未実施 4件</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ② 項目別 実施率 -->
-            <div class="border border-slate-200 rounded-xl p-3 bg-white shadow-sm space-y-3">
-                <div class="font-bold text-xs text-[#2c3e50]">項目別 実施率</div>
-                <div class="space-y-3 text-xs text-slate-600">
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="text-slate-700">歯周検査</span><span class="font-bold text-slate-800">14/16 <span class="text-blue-600 ml-1">88%</span></span></div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-blue-400 to-blue-500 h-full w-[88%] rounded-full"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="text-slate-700">パノラマ撮影</span><span class="font-bold text-slate-800">10/16 <span class="text-blue-600 ml-1">63%</span></span></div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-blue-400 to-blue-500 h-full w-[63%] rounded-full"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex justify-between mb-1"><span class="text-slate-700">スプリント</span><span class="font-bold text-slate-800">8/16 <span class="text-blue-600 ml-1">50%</span></span></div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-blue-400 to-blue-500 h-full w-[50%] rounded-full"></div></div>
-                    </div>
-                    <div>
-                        <div class="flex items-center justify-between mb-1"><span class="text-slate-700">フッ素</span><span class="font-bold text-slate-800">6/16 <span class="text-blue-600 ml-1">38%</span></span></div>
-                        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden"><div class="bg-gradient-to-r from-slate-300 to-slate-400 h-full w-[38%] rounded-full"></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </aside>
-</body>
-</html>
+				            <!-- 予定を保存ボタン -->
+				            <div class="button-container">
+				                <button type="button" class="save-btn">実施内容を保存</button>
+				            </div>
+				           
+				        </div>
+				    </aside>
+				</body>
+				</html>

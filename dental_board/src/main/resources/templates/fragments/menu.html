@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <body>
+
     <nav class="sidebar" th:fragment="menu">
-        <!-- 診療スケジュール：常にアクティブな見た目にしておき、クリックで初期ペインに戻す -->
-        <button onclick="switchTab('schedule')" class="nav-button active px-5 py-3 text-left text-sm font-medium text-white hover:bg-[#1e282c] cursor-pointer w-full">
-            診療スケジュール
-        </button>
-        
-        <!-- 各種切り替えボタン -->
-        <button onclick="switchTab('register')" class="px-5 py-3 text-left text-sm font-medium text-[#b8c7ce] hover:bg-[#1e282c] hover:text-white cursor-pointer w-full">
-            予定登録
-        </button>
-        <button onclick="switchTab('record')" class="px-5 py-3 text-left text-sm font-medium text-[#b8c7ce] hover:bg-[#1e282c] hover:text-white cursor-pointer w-full">
-            実施記録
-        </button>
-        <button onclick="switchTab('status')" class="px-5 py-3 text-left text-sm font-medium text-[#b8c7ce] hover:bg-[#1e282c] hover:text-white cursor-pointer w-full">
-            実施状況
-        </button>
-        
-        <!-- ログアウトボタン -->
+
+		<!-- 診療スケジュール -->
+		<a th:href="@{/}"
+		   class="nav-button"
+		   th:classappend="${page == null or page == 'schedule'} ? ' active' : ''">
+		    診療スケジュール
+		</a>
+
+		<!-- 患者一覧 -->
+		<a th:href="@{/patients}"
+		   class="nav-button"
+		   th:classappend="${page == 'patients'} ? ' active' : ''">
+		    患者一覧
+		</a>
+
+		<!-- 予約 -->
+		<a th:href="@{/reservations}"
+		   class="nav-button"
+		   th:classappend="${page == 'reservations'} ? ' active' : ''">
+		    予約
+		</a>
+
+        <!-- ログアウト -->
         <form th:action="@{/logout}" method="post" class="logout-form mt-auto">
-            <button type="submit" class="nav-button logout-btn w-full text-left">ログアウト</button>
+            <button type="submit"
+                    class="nav-button logout-btn w-full text-left">
+                ログアウト
+            </button>
         </form>
+
     </nav>
+
 </body>
 </html>

@@ -1,31 +1,119 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
-    <div th:fragment="summary">
-        <!-- カウントカード部分 -->
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon bg-blue">予約</div>
-                <div>
-                    <div>本日の予約人数</div>
-                    <div class="card-num">16 名</div>
-                </div>
+
+<div th:fragment="summary" class="summary-container">
+
+    <!-- 3つのサマリーカード -->
+    <div class="summary-cards">
+
+        <!-- 本日の予約人数 -->
+        <div class="summary-card reservation-card">
+
+            <div class="summary-icon">
+
+                <svg class="blue-icon" viewBox="0 0 24 24">
+
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+
+                </svg>
+
             </div>
-            <div class="card">
-                <div class="card-icon bg-green">完了</div>
-                <div>
-                    <div>実施済み</div>
-                    <div class="card-num">12 件</div>
+
+            <div class="summary-text">
+
+                <div class="summary-label">
+                    本日の予約人数
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-icon bg-red">未</div>
-                <div>
-                    <div>未実施</div>
-                    <div class="card-num">4 件</div>
+
+                <div class="summary-number">
+
+                    <span th:text="${todayReservationCount}">16</span>
+
+                    <span class="summary-unit">名</span>
+
                 </div>
+
             </div>
+
         </div>
+
+
+        <!-- 実施済み -->
+        <div class="summary-card completed-card">
+
+            <div class="summary-icon green-icon">
+                ✓
+            </div>
+
+            <div class="summary-text">
+
+                <div class="summary-label">
+                    実施済み
+                </div>
+
+                <div class="summary-number">
+
+                    <span th:text="${completedCount}">12</span>
+
+                    <span class="summary-unit">件</span>
+
+                    <span class="summary-percent">
+
+                        (<span th:text="${completedRate}">75</span>%)
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 未実施 -->
+        <div class="summary-card incomplete-card">
+
+            <div class="summary-icon red-icon">
+                ◇
+            </div>
+
+            <div class="summary-text">
+
+                <div class="summary-label">
+                    未実施
+                </div>
+
+                <div class="summary-number">
+
+                    <span th:text="${incompleteCount}">4</span>
+
+                    <span class="summary-unit">件</span>
+
+                    <span class="summary-percent">
+
+                        (<span th:text="${incompleteRate}">25</span>%)
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
+</div>
+
 </body>
+
 </html>

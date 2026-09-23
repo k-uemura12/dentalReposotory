@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <title>スマート診療タスク</title>
     <!-- 統合済みの style.css を指定 -->
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">	
+	
+	<!-- 予約画面専用CSS -->
+	   <link rel="stylesheet" th:href="@{/css/reservations.css}">
 </head>
 <body>
     <!-- ヘッダーをここに戻す -->
@@ -15,37 +18,43 @@
         <div th:replace="~{fragments/menu :: menu}"></div>
 
         <!-- メインコンテンツ領域 -->
-        <main class="main-content">
-            <h1 class="page-header">スケジュール</h1>
-            
-            <!-- サマリーカード -->
-            <div th:replace="~{fragments/summary :: summary}"></div>
+		<main class="main-content">
 
-            <!-- 診療一覧テーブル -->
-            <div th:replace="~{fragments/contents :: contents}"></div>
-        </main>
+		    <!-- スケジュール画面 -->
+		    <div th:if="${page == null or page == 'schedule'}">
 
-        <!-- ユーティリティペイン -->
-        <div th:replace="~{fragments/utility :: utility}"></div>
-    </div>
-	<!-- 左右を連動させるためのJavaScript -->
-	    <script>
-	        function switchTab(tabName) {
-	            document.getElementById('pane-default').classList.add('hidden');
-	            document.getElementById('pane-register').classList.add('hidden');
-	            document.getElementById('pane-record').classList.add('hidden');
-	            document.getElementById('pane-status').classList.add('hidden');
+		        <h1 class="page-header">スケジュール</h1>
 
-	            if (tabName === 'schedule') {
-	                document.getElementById('pane-default').classList.remove('hidden');
-	            } else if (tabName === 'register') {
-	                document.getElementById('pane-register').classList.remove('hidden');
-	            } else if (tabName === 'record') {
-	                document.getElementById('pane-record').classList.remove('hidden');
-	            } else if (tabName === 'status') {
-	                document.getElementById('pane-status').classList.remove('hidden');
-	            }
-	        }
-	    </script>
+		        <!-- サマリーカード -->
+		        <div th:replace="~{fragments/summary :: summary}"></div>
+
+		        <!-- 診療一覧テーブル -->
+		        <div th:replace="~{fragments/contents :: contents}"></div>
+
+		    </div>
+
+
+		    <!-- 患者一覧画面 -->
+		    <div th:if="${page == 'patients'}">
+
+
+		        <div th:replace="~{fragments/contents-patients :: contentsPatients}"></div>
+
+		    </div>
+			  <!-- 予約画面 -->
+			    <div th:if="${page == 'reservations'}">
+
+			        <div th:replace="~{fragments/contents-reservations :: contentsReservations}"></div>
+
+			    </div>
+
+		</main>
+		<!-- 予約画面以外でユーティリティペインを表示 -->
+		<div th:if="${page != 'reservations'}">
+
+		    <div th:replace="~{fragments/utility :: utility}"></div>
+
+		</div>
+	
 </body>
 </html>

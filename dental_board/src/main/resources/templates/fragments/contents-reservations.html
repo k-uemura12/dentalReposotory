@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:fragment="contentsReservations">
+
+    <div class="reservation-page">
+
+        <!-- =========================
+             上部
+             ========================= -->
+        <div class="reservation-toolbar">
+
+            <div class="reservation-title">
+                予約表
+            </div>
+
+            <div class="reservation-date">
+                <button type="button">＜</button>
+
+                <span>2026年9月23日（水）</span>
+
+                <button type="button">＞</button>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             予約表
+             ========================= -->
+        <div class="reservation-table-wrapper">
+
+            <table class="reservation-table">
+
+                <thead>
+                    <tr>
+                        <th class="time-column">時間</th>
+                        <th>田中 DH</th>
+                        <th>佐藤 DH</th>
+                        <th>山田 DH</th>
+                        <th>鈴木 DH</th>
+                    </tr>
+                </thead>
+
+
+                <tbody>
+
+                    <!-- 9:00 -->
+                    <tr>
+                        <td class="reservation-time">9:00</td>
+
+                        <td>
+                            <div class="appointment-card card-pink">
+                                <span class="appointment-number">P0101</span>
+                                <strong>田中 花子</strong>
+                                <span>メンテナンス</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="appointment-card card-blue">
+                                <span class="appointment-number">P0102</span>
+                                <strong>山田 太郎</strong>
+                                <span>SRP</span>
+                            </div>
+                        </td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="appointment-card card-yellow">
+                                <span class="appointment-number">P0103</span>
+                                <strong>佐藤 美咲</strong>
+                                <span>検査</span>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <!-- 9:30 -->
+                    <tr>
+                        <td class="reservation-time">9:30</td>
+
+                        <td>
+                            <div class="appointment-card card-purple">
+                                <span class="appointment-number">P0104</span>
+                                <strong>鈴木 健一</strong>
+                                <span>メンテナンス</span>
+                            </div>
+                        </td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="appointment-card card-pink">
+                                <span class="appointment-number">P0105</span>
+                                <strong>高橋 さくら</strong>
+                                <span>SRP</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="appointment-card card-blue">
+                                <span class="appointment-number">P0106</span>
+                                <strong>加藤 健太</strong>
+                                <span>検査</span>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <!-- 10:00 -->
+                    <tr>
+                        <td class="reservation-time">10:00</td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="appointment-card card-yellow">
+                                <span class="appointment-number">P0107</span>
+                                <strong>吉田 優子</strong>
+                                <span>メンテナンス</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="appointment-card card-blue">
+                                <span class="appointment-number">P0108</span>
+                                <strong>山本 翔太</strong>
+                                <span>SRP</span>
+                            </div>
+                        </td>
+
+                        <td></td>
+                    </tr>
+
+
+                    <!-- 10:30 -->
+                    <tr>
+                        <td class="reservation-time">10:30</td>
+
+                        <td>
+                            <div class="appointment-card card-blue">
+                                <span class="appointment-number">P0109</span>
+                                <strong>中村 美和</strong>
+                                <span>検査</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="appointment-card card-pink">
+                                <span class="appointment-number">P0110</span>
+                                <strong>斎藤 大輔</strong>
+                                <span>メンテナンス</span>
+                            </div>
+                        </td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="appointment-card card-purple">
+                                <span class="appointment-number">P0111</span>
+                                <strong>伊藤 陽子</strong>
+                                <span>SRP</span>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <!-- 11:00 -->
+                    <tr>
+                        <td class="reservation-time">11:00</td>
+
+                        <td>
+                            <div class="appointment-card card-yellow">
+                                <span class="appointment-number">P0112</span>
+                                <strong>小林 彩</strong>
+                                <span>メンテナンス</span>
+                            </div>
+                        </td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="appointment-card card-pink">
+                                <span class="appointment-number">P0113</span>
+                                <strong>渡辺 翔太</strong>
+                                <span>検査</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="appointment-card card-blue">
+                                <span class="appointment-number">P0114</span>
+                                <strong>松本 優</strong>
+                                <span>SRP</span>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <!-- 11:30 -->
+                    <tr>
+                        <td class="reservation-time">11:30</td>
+
+                        <td></td>
+
+                        <td>
+                            <div class="appointment-card card-purple">
+                                <span class="appointment-number">P0115</span>
+                                <strong>井上 美咲</strong>
+                                <span>メンテナンス</span>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="appointment-card card-yellow">
+                                <span class="appointment-number">P0116</span>
+                                <strong>木村 健</strong>
+                                <span>検査</span>
+                            </div>
+                        </td>
+
+                        <td></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
